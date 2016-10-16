@@ -6,7 +6,7 @@
     <VBox class="sapUiSmallMargin">
         <PlanningCalendar
                 id="PC1"
-                startDate="{path: '/startDate'}"
+                startDate="{path: '/startDate', formatter:'.dateFormatter'}"
                 rows="{path: '/hours'}"
                 appointmentSelect="handleAppointmentSelect"
                 appointmentsVisualization="Filled"
@@ -28,8 +28,9 @@
                         appointments="{path:'appointments', templateShareable:true}">
                     <appointments>
                         <unified:CalendarAppointment
-                                startDate="{start}"
-                                endDate="{end}"
+                                startDate="{path:'start', formatter:'.dateFormatter'}"
+                                endDate="{path:'end', formatter:'.dateFormatter'}"
+                                type="{type}"
                                 visible="{visible}">
                         </unified:CalendarAppointment>
                     </appointments>

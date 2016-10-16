@@ -13,6 +13,16 @@ sap.ui.define([
      */
     return ManagedObject.extend("DataProvider", {
 
+        getJson: function(path){
+            var promise = $.getJSON(path);
+
+            promise.done(function(data) {
+               return data;
+            });
+
+            return promise;
+        },
+
         /**
          *
          * @returns {*}
@@ -29,19 +39,14 @@ sap.ui.define([
             var tomorrow1End = new Date(todayEnd.setDate(todayEnd.getDate() + 5));
             var tomorrow1 = new Date(today.setDate(today.getDate() + 5));
 
-            var centerBegin = tomorrow;
+            var centerBegin = today;
             var centerEnd = tomorrowEnd;
 
             var getHour = function () {
 
                 var appointment1 = {
                     start: tomorrow,
-                    end: tomorrowEnd,
-                    visible: false
-                }
-                var ap2 = {
-                    start: tomorrow1,
-                    end: tomorrow1End
+                    end: tomorrowEnd
                 };
 
                 var hourA = {
@@ -51,34 +56,26 @@ sap.ui.define([
                     ]
                 };
 
-                var hour = {
-                    name: time + ":00 Uhr",
-                };
-
                 time = time + 1;
 
                 return hourA;
-
-
-            };
-
-
-            var getAppointments = function () {
-                var appointments = {
-                    start: centerBegin,
-                    end: centerEnd
-                };
-                return appointments;
             };
 
             var today = new Date();
 
-            var day1 = chance.unique(getHour, 12);
-            var a = chance.unique(getAppointments, 1);
+            var hours = chance.unique(getHour, 12);
+
+                var a = {
+                    start: centerBegin,
+                    end: todayEnd,
+                    type: "Type04",
+                };
+
+            hours[0].appointments.push(a);
 
             return {
-                startDate: new Date(today.setDate(today.getDate())),
-                hours: day1
+                startDate: new Date(tomorrow.setDate(tomorrow.getDate())),
+                hours: hours
             };
         }
 

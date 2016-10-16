@@ -6,15 +6,22 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', './D
 
             onInit: function () {
 
+                var _self = this;
+
                 var dataProvider = new DataProvider();
 
                 // create model
                 var oModel = new JSONModel();
-                oModel.setData(dataProvider.getModel());
 
-                window.oModel = oModel;
+                var p = dataProvider.getJson("Hours.json")
 
-                this.getView().setModel(window.oModel);
+                p.then(function (data) {
+                    oModel.setData(data);
+
+                    window.oModel = oModel;
+
+                    _self.getView().setModel(window.oModel);
+                });
 
             },
 
@@ -27,7 +34,11 @@ sap.ui.define(['sap/ui/core/mvc/Controller', 'sap/ui/model/json/JSONModel', './D
                     var sValue = aAppointments.length + " Appointments selected";
                     console.log(sValue);
                 }
-            }
+            },
+
+            dateFormatter: function (date) {
+                return new Date(date);
+            },
 
         });
 
