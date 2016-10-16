@@ -1,0 +1,40 @@
+<mvc:View
+        controllerName="sap.m.sample.PlanningCalendar.Page"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:unified="sap.ui.unified"
+        xmlns="sap.m">
+    <VBox class="sapUiSmallMargin">
+        <PlanningCalendar
+                id="PC1"
+                startDate="{path: '/startDate'}"
+                rows="{path: '/hours'}"
+                appointmentSelect="handleAppointmentSelect"
+                appointmentsVisualization="Filled"
+                height="1000px"
+                showEmptyIntervalHeaders="false"
+                viewKey="w">
+            <views>
+                <PlanningCalendarView
+                        key="w"
+                        intervalType="Day"
+                        description="Weekly"
+                        intervalsS="5"
+                        intervalsM="7"
+                        intervalsL="7"/>
+            </views>
+            <rows>
+                <PlanningCalendarRow
+                        title="{name}"
+                        appointments="{path:'appointments', templateShareable:true}">
+                    <appointments>
+                        <unified:CalendarAppointment
+                                startDate="{start}"
+                                endDate="{end}"
+                                visible="{visible}">
+                        </unified:CalendarAppointment>
+                    </appointments>
+                </PlanningCalendarRow>
+            </rows>
+        </PlanningCalendar>
+    </VBox>
+</mvc:View>
