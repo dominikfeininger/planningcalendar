@@ -23,6 +23,33 @@ sap.ui.define([
             return promise;
         },
 
+        getAllDay: function () {
+
+            //start
+            var time = 8;
+
+            var _getHour = function () {
+
+                var hourA = {
+                    name: time + ":00 Uhr",
+                    appointments: [
+                        {
+                            start: new Date(),
+                            end: new Date()
+                        }
+                    ]
+                };
+
+                time = time + 1;
+
+                return hourA;
+            };
+
+            return {
+                hours: chance.unique(_getHour, 12)
+            };
+        },
+
         /**
          *
          * @returns {*}

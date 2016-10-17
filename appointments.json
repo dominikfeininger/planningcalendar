@@ -1,0 +1,21 @@
+{
+  "startDate": "2016-10-19",
+  "hours": [
+    {
+      "appointments": [
+        {
+          "date": "2016-10-21",
+          "startTime": "10:00",
+          "endTime": "12:00",
+          "type": "Type04"
+        },
+        {
+          "date": "2016-10-24",
+          "startTime": "10:30",
+          "endTime": "15:30",
+          "type": "Type04"
+        }
+      ]
+    }
+  ]
+}

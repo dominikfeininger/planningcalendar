@@ -2,9 +2,10 @@
         controllerName="sap.m.sample.PlanningCalendar.Page"
         xmlns:mvc="sap.ui.core.mvc"
         xmlns:unified="sap.ui.unified"
+        xmlns:c="sov.cal"
         xmlns="sap.m">
     <VBox class="sapUiSmallMargin">
-        <PlanningCalendar
+        <c:PlanningCalendar
                 id="PC1"
                 startDate="{path: '/startDate', formatter:'.dateFormatter'}"
                 rows="{path: '/hours'}"
@@ -13,29 +14,33 @@
                 height="1000px"
                 showEmptyIntervalHeaders="false"
                 viewKey="w">
-            <views>
+            <c:views>
                 <PlanningCalendarView
                         key="w"
                         intervalType="Day"
                         description="Weekly"
-                        intervalsS="5"
+                        intervalsS="3"
                         intervalsM="7"
-                        intervalsL="7"/>
-            </views>
-            <rows>
-                <PlanningCalendarRow
+                        intervalsL="9"/>
+            </c:views>
+            <c:rows>
+                <c:PlanningCalendarRow
                         title="{name}"
                         appointments="{path:'appointments', templateShareable:true}">
-                    <appointments>
-                        <unified:CalendarAppointment
-                                startDate="{path:'start', formatter:'.dateFormatter'}"
-                                endDate="{path:'end', formatter:'.dateFormatter'}"
+                    <c:appointments>
+                        <c:CalendarAppointment
+                                startDate="{path:'date', formatter:'.dateStartFormatter'}"
+                                endDate="{path:'date', formatter:'.dateEndFormatter'}"
+
+                                date="{path:'date', formatter:'.dateEndFormatter'}"
+                                startTime="{path:'startTime', formatter:'.timeFormatter'}"
+                                endTime="{path:'endTime', formatter:'.timeFormatter'}"
                                 type="{type}"
                                 visible="{visible}">
-                        </unified:CalendarAppointment>
-                    </appointments>
-                </PlanningCalendarRow>
-            </rows>
-        </PlanningCalendar>
+                        </c:CalendarAppointment>
+                    </c:appointments>
+                </c:PlanningCalendarRow>
+            </c:rows>
+        </c:PlanningCalendar>
     </VBox>
 </mvc:View>
