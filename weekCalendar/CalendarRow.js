@@ -1,4 +1,3 @@
-
 jQuery.sap.declare("sov.cal.CalendarRow");
 
 sap.ui.define(["jquery.sap.global", "sap/ui/unified/CalendarRow"],
@@ -12,9 +11,22 @@ sap.ui.define(["jquery.sap.global", "sap/ui/unified/CalendarRow"],
          */
         var CalendarRow = SuperControl.extend("sov.cal.CalendarRow", {
 
-            renderer:{
+            metadata: {
+                properties: {
+                    time: "string",
+                },
+            },
 
-                renderAppointment : function(oRm, oRow, oAppointmentInfo, aTypes) {
+            renderer: {
+
+                //TODO:
+                renderNow: function () {
+                    // ----------------------- row now ---------------------------- //
+                    var now = new Date().getHours() * 48;
+                    oRm.write("<div id=\"" + oRow.getId() + "-Now\" class=\"sapUiCalendarRowNow\" style=\"top:" + now.toString() + "px\"></div>");
+                },
+
+                renderAppointment: function (oRm, oRow, oAppointmentInfo, aTypes) {
 
                     var oAppointment = oAppointmentInfo.appointment;
                     var sTooltip = oAppointment.getTooltip_AsString();
@@ -77,15 +89,19 @@ sap.ui.define(["jquery.sap.global", "sap/ui/unified/CalendarRow"],
                     var endTime = oAppointmentInfo.appointment.mProperties.endTime;
 
                     var pixel = 49;
+                    
+                    // hour - start time
+                    var shour = (startTime.substr(0, 2) - 9) * pixel;
+                    var smin = startTime.substr(3, 5) * (pixel / 60);
 
-                    var shour = (startTime.substr(0,2)-9) * pixel;
-                    var smin = startTime.substr(3,5) * (pixel/60);
+                    // hour - start time
+                    var ehour = (endTime.substr(0, 2) - 9) * pixel;
+                    var emin = endTime.substr(3, 5) * (pixel / 60);
 
-                    var ehour = (endTime.substr(0,2)-9) * pixel;
-                    var emin = endTime.substr(3,5) * (pixel/60);
+                    var end = ehour + emin - shour - smin;
 
-                    oRm.addStyle("top", shour+smin + "px");
-                    oRm.addStyle("height", ehour+emin + "px");
+                    oRm.addStyle("top", shour + smin + "px");
+                    oRm.addStyle("height", end + "px");
 
                     // ------------------------ time calculation ------------------ //
 
@@ -169,6 +185,7 @@ sap.ui.define(["jquery.sap.global", "sap/ui/unified/CalendarRow"],
 
                     oRm.write("</div>");
                     oRm.write("</div>");
+
                 }
             }
 

@@ -13,7 +13,9 @@
                 appointmentsVisualization="Filled"
                 height="1000px"
                 showEmptyIntervalHeaders="false"
-                viewKey="w">
+                viewKey="w"
+                intervalSelect="handleIntervalSelect"
+                rowSelectionChange="rowSelectionChange">
             <c:views>
                 <PlanningCalendarView
                         key="w"
@@ -25,6 +27,7 @@
             </c:views>
             <c:rows>
                 <c:PlanningCalendarRow
+                        time="{time}"
                         title="{name}"
                         appointments="{path:'appointments', templateShareable:true}">
                     <c:appointments>

@@ -32,6 +32,7 @@ sap.ui.define([
 
                 var hourA = {
                     name: time + ":00 Uhr",
+                    time: new Date(new Date().setHours(time)),
                     appointments: [
                         {
                             start: new Date(),
