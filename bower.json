@@ -1,0 +1,29 @@
+{
+  "name": "planningcalendar",
+  "description": "planningcalendar ui5 contols",
+  "main": [
+
+  ],
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    
+  },
+  "moduleType": [
+
+  ],
+  "keywords": [
+
+  ],
+  "authors": [
+    "dominik feininger <dominik.feininger@sovanta.com>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+}
